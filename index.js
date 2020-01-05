@@ -11,8 +11,8 @@ class App extends Component {
 		hasLoaded: false
 	}
 
-	componentDidMount() {
 
+	getData() {
 		let $this = this;
 
 		const getLocation = new Promise(function (resolve, reject) {
@@ -42,7 +42,10 @@ class App extends Component {
 					})
 					.catch(console.log)
 			});
+	}
 
+	componentDidMount() {
+		this.getData();
 	}
 
 	render() {

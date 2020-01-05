@@ -56,7 +56,10 @@ class App extends Component {
 
 					<ul>
 						{this.state.forecast.properties.periods.map(item => (
-							<li key={item.startTime}>{item.temperature}</li>
+							<li key={item.startTime}>
+								{item.name}<br />
+								{item.shortForecast} - {item.temperature}&#8457;
+							</li>
 						))}
 					</ul>
 				</main>

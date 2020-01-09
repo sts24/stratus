@@ -2,7 +2,7 @@ import { observable, action, computed, autorun, toJS } from 'mobx';
 import axios from "axios";
 
 
-class modelStore {
+class dataStore {
 
 	@observable location = {};
 	@observable weather = {};
@@ -40,7 +40,6 @@ class modelStore {
 
 }
 
-const model = new modelStore();
-
-export default model;
-export { modelStore };
+const modelStore = new dataStore();
+export default modelStore;
+export { dataStore };

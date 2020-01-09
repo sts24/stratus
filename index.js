@@ -1,14 +1,16 @@
 import React from "react";
 import ReactDOM from 'react-dom'
 import { observer } from "mobx-react";
-import modelStore from "./store.js"
+import modelStore from "./store.js";
+import Forecast from "./compontents/forecast";
+import Current from "./compontents/current";
 
 @observer
 class App extends React.Component {
 
 	constructor(props) {
 		super(props);
-		this.store = this.props.store;
+		this.store = this.props.modelStore;
 		this.store.getData();
 	}
 
@@ -19,18 +21,17 @@ class App extends React.Component {
 	render() {
 		if (this.store.hasLoaded) {
 			return (
-				<main>
-					<h1>{this.store.weather.relativeLocation.properties.city}, {this.store.weather.relativeLocation.properties.state}</h1>
+				<div id="app">
+					<header>
+						<h1>{this.store.weather.relativeLocation.properties.city}, {this.store.weather.relativeLocation.properties.state}</h1>
+					</header>
+					<main className="data-grid">
+						<Current />
+						<Forecast />
+					</main>
 
-					<ul>
-						{this.store.forecast.periods.map(item => (
-							<li key={item.startTime}>
-								{item.name}<br />
-								{item.shortForecast} - {item.temperature}&#8457;
-							</li>
-						))}
-					</ul>
-				</main>
+
+				</div>
 			);
 		} else {
 			return null
@@ -39,4 +40,4 @@ class App extends React.Component {
 }
 
 
-ReactDOM.render(<App store={modelStore} />, document.getElementById("app"));
+ReactDOM.render(<App modelStore={modelStore} />, document.getElementById("app"));

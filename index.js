@@ -20,17 +20,18 @@ class App extends React.Component {
 
 	render() {
 		if (this.store.hasLoaded) {
+			let loc = this.store.weather.relativeLocation.properties;
+			let elevation = this.store.forecast.elevation.value;
 			return (
 				<div id="app">
 					<header>
-						<h1>{this.store.weather.relativeLocation.properties.city}, {this.store.weather.relativeLocation.properties.state}</h1>
+						<h1>{loc.city}, {loc.state}</h1>
+						<p>{elevation} meters</p>
 					</header>
 					<main className="data-grid">
 						<Current />
 						<Forecast />
 					</main>
-
-
 				</div>
 			);
 		} else {

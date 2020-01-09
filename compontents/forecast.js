@@ -17,10 +17,12 @@ export default class Forecast extends React.Component {
 
 				<ul className="forecast-list">
 					{this.store.forecast.periods.map(item => (
-						<li key={item.startTime}>
-							{item.name}<br />
-							{item.shortForecast} - {item.temperature}&#8457;
-							</li>
+						<li className="forecast-item" key={item.startTime}>
+							<div className="forecast-day">{item.name}</div>
+							<div className="forecast-desc">{item.shortForecast}</div>
+							<div className="forecast-temp">{item.temperature}&#8457;</div>
+							<div className="forecast-wind">{item.windSpeed} {item.windDirection}</div>
+						</li>
 					))}
 				</ul>
 			);

@@ -8,8 +8,8 @@ body {
 
 .data-grid {
 	display: grid;
-	grid-template-columns: 1fr 30%;
-	max-width: 80%;
+	grid-template-columns: 2fr 1fr;
+	max-width: 800px;
 	margin: 0 auto;
 }
 
@@ -29,4 +29,35 @@ body {
 			border-top: 1px solid black;
 		}
 	}
+}
+
+.forecast-item {
+	display: grid;
+	grid-gap: .5rem;
+	grid-template-areas: 
+		"temp day"
+		"temp desc"
+		"temp wind";
+	grid-template-columns: 40% auto;
+}
+
+.forecast-day {
+	grid-area: day;
+}
+
+.forecast-desc {
+	grid-area: desc;
+	font-size: 0.75rem;
+	font-style: italic;
+}
+
+.forecast-temp {
+	grid-area: temp;
+	font-size: 2rem;
+	font-weight: bold;
+}
+
+.forecast-wind {
+	grid-area: wind;
+	font-size: 0.75rem;
 }

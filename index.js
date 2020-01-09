@@ -1,61 +1,29 @@
-import React, { Component } from "react";
-import ReactDOM from "react-dom";
-import axios from 'axios';
+import React from "react";
+import ReactDOM from 'react-dom'
+import { observer } from "mobx-react";
+import modelStore from "./store.js"
 
-class App extends Component {
+@observer
+class App extends React.Component {
 
-	state = {
-		location: {},
-		weather: {},
-		forecast: [],
-		hasLoaded: false
-	}
-
-
-	getData() {
-		let $this = this;
-
-		const getLocation = new Promise(function (resolve, reject) {
-			navigator.geolocation.getCurrentPosition(function (location) {
-				$this.setState({ location: location.coords });
-				resolve();
-			});
-		});
-
-		getLocation
-			.then(function (value) {
-				fetch('https://api.weather.gov/points/' + $this.state.location.latitude + ',' + $this.state.location.longitude)
-					.then(res => res.json())
-					.then((data) => {
-						$this.setState({ weather: data })
-						return data
-					})
-					.then(function (data) {
-						fetch(data.properties.forecast)
-							.then(res => res.json())
-							.then((data) => {
-								$this.setState({
-									forecast: data,
-									hasLoaded: true
-								})
-							})
-					})
-					.catch(console.log)
-			});
+	constructor(props) {
+		super(props);
+		this.store = this.props.store;
+		this.store.getData();
 	}
 
 	componentDidMount() {
-		this.getData();
+
 	}
 
 	render() {
-		if (this.state.hasLoaded) {
+		if (this.store.hasLoaded) {
 			return (
 				<main>
-					<h1>{this.state.weather.properties.relativeLocation.properties.city}, {this.state.weather.properties.relativeLocation.properties.state}</h1>
+					<h1>{this.store.weather.relativeLocation.properties.city}, {this.store.weather.relativeLocation.properties.state}</h1>
 
 					<ul>
-						{this.state.forecast.properties.periods.map(item => (
+						{this.store.forecast.periods.map(item => (
 							<li key={item.startTime}>
 								{item.name}<br />
 								{item.shortForecast} - {item.temperature}&#8457;
@@ -71,4 +39,4 @@ class App extends Component {
 }
 
 
-ReactDOM.render(<App />, document.getElementById("app"));
+ReactDOM.render(<App store={modelStore} />, document.getElementById("app"));

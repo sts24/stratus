@@ -23,7 +23,7 @@ class App extends React.Component {
 			let loc = this.store.weather.relativeLocation.properties;
 			let elevation = this.store.forecast.elevation.value;
 			return (
-				<div id="app">
+				<React.Fragment>
 					<header>
 						<h1>{loc.city}, {loc.state}</h1>
 						<p>{elevation} meters</p>
@@ -32,7 +32,7 @@ class App extends React.Component {
 						<Current />
 						<Forecast />
 					</main>
-				</div>
+				</React.Fragment>
 			);
 		} else {
 			return null

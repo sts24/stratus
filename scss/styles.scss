@@ -9,6 +9,7 @@ body {
 .data-grid {
 	display: grid;
 	grid-template-columns: 2fr 1fr;
+	justify-content: center;
 	max-width: 800px;
 	margin: 0 auto;
 }

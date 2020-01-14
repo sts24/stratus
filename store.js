@@ -4,7 +4,7 @@ import axios from "axios";
 
 class dataStore {
 
-	@observable location = {};
+	@observable hourly = {};
 	@observable weather = {};
 	@observable forecast = {};
 	@observable hasLoaded = false;
@@ -21,20 +21,30 @@ class dataStore {
 		});
 
 		getLocation.then(value => {
+			// get location data
 			return axios.get('https://api.weather.gov/points/' + value.latitude + ',' + value.longitude)
 				.then(response => {
 					$this.weather = response.data.properties;
 					return response.data.properties
 				});
 		}).then(value => {
-			return axios.get(value.forecast)
+			// get forecast data
+			axios.get(value.forecast)
 				.then(response => {
 					$this.forecast = response.data.properties
+					//$this.hasLoaded = true;
+					return response.data.properties
+				});
+
+			// get hourly data
+			axios.get(value.forecastHourly)
+				.then(response => {
+					$this.hourly = response.data.properties
 					$this.hasLoaded = true;
 					return response.data.properties
 				});
 		}).catch(value => {
-
+			console.log(value);
 		});
 	}
 

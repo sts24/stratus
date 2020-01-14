@@ -1,7 +1,7 @@
 import React from "react";
 import modelStore from "../store.js";
 import { observer } from "mobx-react";
-
+import Hourly from "./hourly";
 
 @observer
 export default class Current extends React.Component {
@@ -13,12 +13,20 @@ export default class Current extends React.Component {
 
 	render() {
 		if (this.store.hasLoaded) {
+			let currentCond = this.store.hourly.periods[0];
+
 			return (
-
-				<ul>
-
-				</ul>
-			);
+				<section className="conditions">
+					<figure className="current-conditions">
+						<header>Currently</header>
+						<div className="forecast-day">{currentCond.name}</div>
+						<div className="forecast-desc">{currentCond.shortForecast}</div>
+						<div className="forecast-temp">{currentCond.temperature}&#8457;</div>
+						<div className="forecast-wind">{currentCond.windSpeed} {currentCond.windDirection}</div>
+					</figure>
+					<Hourly />
+				</section>
+			)
 		} else {
 			return null
 		}

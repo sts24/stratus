@@ -14,19 +14,13 @@ class App extends React.Component {
 		this.store.getData();
 	}
 
-	componentDidMount() {
-
-	}
-
 	render() {
 		if (this.store.hasLoaded) {
 			let loc = this.store.weather.relativeLocation.properties;
-			let elevation = this.store.forecast.elevation.value;
 			return (
 				<React.Fragment>
 					<header>
 						<h1>{loc.city}, {loc.state}</h1>
-						<p>{elevation} meters</p>
 					</header>
 					<main className="data-grid">
 						<Current />

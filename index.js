@@ -19,7 +19,7 @@ class App extends React.Component {
 			let loc = this.store.weather.relativeLocation.properties;
 			return (
 				<React.Fragment>
-					<header>
+					<header className="app-header">
 						<h1>{loc.city}, {loc.state}</h1>
 					</header>
 					<main className="data-grid">

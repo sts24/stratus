@@ -17,15 +17,15 @@ export default class Hourly extends React.Component {
 
 			return (
 				<ul className="hourly-list">
-					{hourlyCond.map(item => {
+					{hourlyCond.slice(0, 12).map(item => {
 						let daytimeClass = item.isDaytime ? `forecast-daytime` : `forecast-nighttime`;
 
 						return (
-							<li className={`forecast-item ${daytimeClass}`} key={item.startTime} >
-								<div className="forecast-day">{item.name}</div>
-								<div className="forecast-desc">{item.shortForecast}</div>
-								<div className="forecast-temp">{item.temperature}&#8457;</div>
-								<div className="forecast-wind">{item.windSpeed} {item.windDirection}</div>
+							<li className={`hourly-item ${daytimeClass}`} key={item.startTime} >
+								<time>{this.store.getTime(item.startTime)}</time>
+								<div className="hourly-desc">{item.shortForecast}</div>
+								<div className="hourly-temp">{item.temperature}&#8457;</div>
+								<div className="hourly-wind">{item.windSpeed} {item.windDirection}</div>
 							</li>
 						)
 

@@ -6,10 +6,20 @@ body {
 	margin: 0;
 }
 
+.app-header {
+	margin: 2rem auto;
+	max-width: 800px;
+}
+
+h1 {
+	font-weight: 900;
+	margin: 0;
+}
+
 .data-grid {
 	display: grid;
 	grid-template-columns: 2fr 1fr;
-	justify-content: center;
+	justify-content: space-between;
 	max-width: 800px;
 	margin: 0 auto;
 }
@@ -72,4 +82,29 @@ body {
 .current-conditions {
 	display: flex;
 	justify-content: center;
+}
+
+.hourly-list {
+	list-style: none;
+	margin: 0;
+	padding: 0;
+}
+
+.hourly-item {
+	padding: 0.5rem 1rem;
+	margin: 0;
+	border-bottom: 1px solid black;
+
+	display: flex;
+
+	time {
+		font-weight: 900;
+		width: 6ch;
+		text-align: right;
+		margin-right: 1ch;
+	}
+
+	div {
+		margin-right: 1ch;
+	}
 }

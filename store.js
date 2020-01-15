@@ -48,6 +48,15 @@ class dataStore {
 		});
 	}
 
+
+	getTime(data) {
+		let newDate = new Date(data);
+
+		return newDate.toLocaleTimeString([], {
+			hour: 'numeric'
+		});
+	}
+
 }
 
 const modelStore = new dataStore();

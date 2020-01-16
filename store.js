@@ -21,8 +21,11 @@ class dataStore {
 		});
 
 		getLocation.then(value => {
+			let lat = value.latitude.toFixed(4);
+			let long = value.longitude.toFixed(4);
+
 			// get location data
-			return axios.get('https://api.weather.gov/points/' + value.latitude + ',' + value.longitude)
+			return axios.get('https://api.weather.gov/points/' + lat + ',' + long)
 				.then(response => {
 					$this.weather = response.data.properties;
 					return response.data.properties

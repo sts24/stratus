@@ -1,6 +1,7 @@
 import React from "react";
 import modelStore from "../store.js";
 import { observer } from "mobx-react";
+import Hourly from "./hourly";
 
 
 @observer
@@ -15,19 +16,21 @@ export default class Forecast extends React.Component {
 		return item.isDaytime ? `forecast-item forecast-daytime` : `forecast-item forecast-nighttime`;
 	}
 
+
 	render() {
 		if (this.store.hasLoaded) {
 			return (
 				<ul className="forecast-list">
-					{this.store.forecast.periods.map(item => {
+					{this.store.forecast.periods.slice(2).map((item, index) => {
 						let daytimeClass = item.isDaytime ? `forecast-daytime` : `forecast-nighttime`;
 
 						return (
-							<li className={`forecast-item ${daytimeClass}`} key={item.startTime} >
+							<li className={`forecast-item ${daytimeClass}`} key={item.startTime}>
 								<div className="forecast-day">{item.name}</div>
 								<div className="forecast-desc">{item.shortForecast}</div>
 								<div className="forecast-temp">{item.temperature}&#8457;</div>
 								<div className="forecast-wind">{item.windSpeed} {item.windDirection}</div>
+								<div className="forecast-full-desc">{item.detailedForecast}</div>
 							</li>
 						)
 

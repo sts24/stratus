@@ -4,6 +4,7 @@ import { observer } from "mobx-react";
 import modelStore from "./store.js";
 import Forecast from "./compontents/forecast";
 import Current from "./compontents/current";
+import Hourly from "./compontents/hourly";
 
 @observer
 class App extends React.Component {
@@ -24,6 +25,7 @@ class App extends React.Component {
 					</header>
 					<main className="data-grid">
 						<Current />
+						<Hourly />
 						<Forecast />
 					</main>
 				</React.Fragment>

@@ -1,27 +1,47 @@
+:root {
+	--bg: white;
+	--text: black;
+	--highlight: #df552a;
+
+	--leftCol: 100px;
+
+	@media (prefers-color-scheme: dark){
+		--bg: black;
+		--text: white;
+		--highlight: #00bda3;
+	}
+}
+
+
 body {
 	font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
 	font-size: 100%;
 	line-height: 1.5;
 	padding: 0;
 	margin: 0;
+	background: var(--bg);
+	color: var(--text);
 }
 
 .app-header {
 	margin: 2rem auto;
 	max-width: 800px;
+	text-align: center;
 }
 
 h1 {
 	font-weight: 900;
 	margin: 0;
+	color: var(--highlight);
 }
 
 .data-grid {
 	display: grid;
-	grid-template-columns: 2fr 1fr;
+	grid-template-columns: 100%;
 	justify-content: space-between;
 	max-width: 800px;
 	margin: 0 auto;
+	padding-bottom: 20vh;
 }
 
 
@@ -34,30 +54,29 @@ h1 {
 	> li {
 		margin: 0;
 	}
+
+	.forecast-temp {
+		line-height: 1;
+		text-align: right;
+	}
 }
 
 .forecast-item {
 	display: grid;
-	grid-gap: .5rem;
+	grid-gap: 1rem;
 	grid-template-areas: 
 		"temp day"
 		"temp desc"
-		"temp wind";
-	grid-template-columns: 40% auto;
-	padding: 1rem;
-
-	&.forecast-daytime {
-		background-color: #fcf4e0;
-	}
-
-	&.forecast-nighttime {
-		background-color: midnightblue;
-		color: white;
-	}
+		"temp wind"
+		"temp detail";
+	grid-template-columns: var(--leftCol) auto;
+	padding: 1rem 0;
+	border-bottom: 1px solid var(--text);
 }
 
 .forecast-day {
 	grid-area: day;
+	font-weight: 700;
 }
 
 .forecast-desc {
@@ -69,7 +88,7 @@ h1 {
 .forecast-temp {
 	grid-area: temp;
 	font-size: 2rem;
-	font-weight: bold;
+	font-weight: 900;
 }
 
 .forecast-wind {
@@ -77,11 +96,15 @@ h1 {
 	font-size: 0.75rem;
 }
 
+.forecast-desc-full {
+	grid-area: detail;
+
+}
+
 
 
 .current-conditions {
-	display: flex;
-	justify-content: center;
+	text-align: center;
 }
 
 .hourly-list {
@@ -91,17 +114,21 @@ h1 {
 }
 
 .hourly-item {
-	padding: 0.5rem 1rem;
+	padding: 0.5rem 0;
 	margin: 0;
-	border-bottom: 1px solid black;
+	border-bottom: 1px solid var(--text);
+
+	&:first-child {
+		border-top: 1px solid var(--text);
+	}
 
 	display: flex;
 
 	time {
 		font-weight: 900;
-		width: 6ch;
+		width: var(--leftCol);
 		text-align: right;
-		margin-right: 1ch;
+		margin-right: 1rem;
 	}
 
 	div {

@@ -7,7 +7,12 @@ class dataStore {
 	@observable hourly = {};
 	@observable weather = {};
 	@observable forecast = {};
-	@observable hasLoaded = false;
+	@observable status = {
+		hasLocation: false,
+		hasWeather: false,
+		hasForecast: false,
+		hasHourly: false
+	};
 
 
 	getData() {
@@ -16,6 +21,7 @@ class dataStore {
 		const getLocation = new Promise(function (resolve, reject) {
 			navigator.geolocation.getCurrentPosition(function (location) {
 				$this.location = location.coords;
+				$this.status.hasLocation = true;
 				resolve(location.coords);
 			});
 		});
@@ -28,6 +34,7 @@ class dataStore {
 			return axios.get('https://api.weather.gov/points/' + lat + ',' + long)
 				.then(response => {
 					$this.weather = response.data.properties;
+					$this.status.hasWeather = true;
 					return response.data.properties
 				});
 		}).then(value => {
@@ -35,7 +42,7 @@ class dataStore {
 			axios.get(value.forecast)
 				.then(response => {
 					$this.forecast = response.data.properties
-					//$this.hasLoaded = true;
+					$this.status.hasForecast = true;
 					return response.data.properties
 				});
 
@@ -43,7 +50,7 @@ class dataStore {
 			axios.get(value.forecastHourly)
 				.then(response => {
 					$this.hourly = response.data.properties
-					$this.hasLoaded = true;
+					$this.status.hasHourly = true;
 					return response.data.properties
 				});
 		}).catch(value => {

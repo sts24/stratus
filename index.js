@@ -16,7 +16,7 @@ class App extends React.Component {
 	}
 
 	render() {
-		if (this.store.hasLoaded) {
+		if (this.store.status.hasLocation && this.store.status.hasWeather) {
 			let loc = this.store.weather.relativeLocation.properties;
 			return (
 				<React.Fragment>
@@ -31,7 +31,13 @@ class App extends React.Component {
 				</React.Fragment>
 			);
 		} else {
-			return null
+			return (
+				<div className="notification">
+					<div className="notification-content">
+						Please Enable Location Services in Your Browser.
+					</div>
+				</div>
+			)
 		}
 	}
 }

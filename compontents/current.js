@@ -16,7 +16,7 @@ export default class Current extends React.Component {
 			let currentCond = this.store.hourly.periods[0];
 
 			return (
-				<React.Fragment>
+				<div className="grid-col grid-current">
 					<h2>Currently</h2>
 					<figure className="current-conditions">
 						<div className="forecast-day">{currentCond.name}</div>
@@ -24,7 +24,7 @@ export default class Current extends React.Component {
 						<div className="forecast-temp">{currentCond.temperature}&#8457;</div>
 						<div className="forecast-wind">{currentCond.windSpeed} {currentCond.windDirection}</div>
 					</figure>
-				</React.Fragment>
+				</div>
 			)
 		} else {
 			return <Loading text="Current Conditions" />

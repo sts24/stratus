@@ -16,7 +16,7 @@ export default class Hourly extends React.Component {
 			let hourlyCond = this.store.hourly.periods;
 
 			return (
-				<React.Fragment>
+				<div className="grid-col grid-hourly">
 					<h2>Next 12 Hours</h2>
 					<ul className="hourly-list">
 						{hourlyCond.slice(1, 13).map(item => {
@@ -33,7 +33,7 @@ export default class Hourly extends React.Component {
 
 						})}
 					</ul>
-				</React.Fragment>
+				</div>
 			)
 		} else {
 			return <Loading text="Hourly Forecast" />

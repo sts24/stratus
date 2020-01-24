@@ -19,6 +19,7 @@ body {
 	line-height: 1.5;
 	padding: 1rem;
 	margin: 0;
+	padding: 0 3rem;
 	background: var(--bg);
 	color: var(--text);
 }
@@ -52,14 +53,21 @@ h2 {
 
 .data-grid {
 	display: grid;
-	grid-template-columns: 100%;
+	grid-template-columns: 20% 30% 1fr;
+	grid-gap: 3rem;
 	justify-content: space-between;
-	max-width: 800px;
-	margin: 0 auto;
-	padding-bottom: 20vh;
+	box-sizing: border-box;
+	overflow: hidden;
+	height: 60vh;
 }
 
+.grid-col {
+	overflow-y: scroll;
 
+	h2 {
+		position: sticky;
+	}
+}
 
 .forecast-list {
 	list-style: none;

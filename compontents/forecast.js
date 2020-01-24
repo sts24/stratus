@@ -19,7 +19,7 @@ export default class Forecast extends React.Component {
 	render() {
 		if (this.store.status.hasForecast) {
 			return (
-				<React.Fragment>
+				<div className="grid-col grid-forecast">
 					<h2>Extended Forecast</h2>
 					<ul className="forecast-list">
 						{this.store.forecast.periods.map((item, index) => {
@@ -37,7 +37,7 @@ export default class Forecast extends React.Component {
 
 						})}
 					</ul>
-				</React.Fragment>
+				</div>
 			)
 		} else {
 			return <Loading text="Extended Forecast" />

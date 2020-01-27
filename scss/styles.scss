@@ -19,16 +19,25 @@ body {
 	line-height: 1.5;
 	padding: 1rem;
 	margin: 0;
-	padding: 0 3rem;
+	padding: 0 1rem;
 	background: var(--bg);
 	color: var(--text);
+
+	@media (min-width: 768px){
+		padding: 0 3rem;
+	}
 }
 
 #app {
 	display: grid;
 	grid-template-rows: auto 1fr;
-	overflow: hidden;
-	height: 100vh;
+	
+	
+
+	@media (min-width: 768px){
+		height: 100vh;
+		overflow: hidden;
+	}
 }
 
 .app-header {
@@ -67,15 +76,21 @@ h2 {
 
 .data-grid {
 	display: grid;
-	grid-template-columns: 20% 30% 1fr;
+	grid-template-columns: 100%;
 	grid-gap: 3rem;
 	justify-content: space-between;
 	box-sizing: border-box;
-	overflow: hidden;
+	
+	@media (min-width: 768px){
+		overflow: hidden;
+		grid-template-columns: 20% 30% 1fr;
+	}
 }
 
 .grid-col {
-	overflow-y: auto;
+	@media (min-width: 768px){
+		overflow-y: auto;
+	}
 
 	h2 {
 		position: sticky;
@@ -101,17 +116,21 @@ h2 {
 .forecast-item {
 	display: grid;
 	grid-gap: 1rem;
-	grid-template-areas: 
-		"day temp"
-		"day desc"
-		"day wind"
-		"day detail";
-	grid-template-columns: 150px auto;
+	
 	grid-template-rows: auto;
 	align-items: start;
 	padding: 1rem;
 	border-bottom: 1px solid var(--text);
 	line-height: 1;
+
+	@media (min-width: 768px){
+		grid-template-columns: 150px auto;
+		grid-template-areas: 
+			"day temp"
+			"day desc"
+			"day wind"
+			"day detail";
+	}
 }
 
 .forecast-day {
@@ -165,17 +184,28 @@ h2 {
 	margin: 0;
 	border-bottom: 1px solid var(--text);
 
-	display: flex;
-
 	time {
 		font-weight: 900;
-		width: 100px;
-		text-align: right;
 		margin-right: 1rem;
+		width: 60px;
+		display: inline-block;
 	}
 
 	div {
-		margin-right: 1ch;
+		display: inline;
+		padding-right: 1ch;
+	}
+
+	@media (min-width: 768px){
+		display: flex;
+
+		time {
+			text-align: right;
+		}
+
+		div {
+			display: block;
+		}
 	}
 }
 

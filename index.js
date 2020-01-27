@@ -21,7 +21,7 @@ class App extends React.Component {
 			return (
 				<React.Fragment>
 					<header className="app-header">
-						<h1>{loc.city}, {loc.state}</h1>
+						<h1><span>Weather for </span>{loc.city}, {loc.state}</h1>
 					</header>
 					<main className="data-grid">
 						<Current />

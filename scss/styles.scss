@@ -116,7 +116,11 @@ h2 {
 .forecast-item {
 	display: grid;
 	grid-gap: 1rem;
-	
+	grid-template-areas:
+		"day day"
+		"temp temp"
+		"desc wind"
+		"detail detail";
 	grid-template-rows: auto;
 	align-items: start;
 	padding: 1rem;

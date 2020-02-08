@@ -11,24 +11,32 @@ class dataStore {
 		hasLocation: false,
 		hasWeather: false,
 		hasForecast: false,
-		hasHourly: false
+		hasHourly: false,
+		message: ""
 	};
 
 
 	getData() {
 		let $this = this;
 
+		$this.status.message = "Welcome to Stratus.";
+
 		const getLocation = new Promise(function (resolve, reject) {
 			navigator.geolocation.getCurrentPosition(function (location) {
 				$this.location = location.coords;
 				$this.status.hasLocation = true;
+				$this.status.message = "Getting location.";
 				resolve(location.coords);
+			}, function(error){
+				reject(error.code);
 			});
 		});
 
 		getLocation.then(value => {
 			let lat = value.latitude.toFixed(4);
 			let long = value.longitude.toFixed(4);
+
+			$this.status.message = "Getting data from the National Weather Service."
 
 			// get location data
 			return axios.get('https://api.weather.gov/points/' + lat + ',' + long)
@@ -54,7 +62,10 @@ class dataStore {
 					return response.data.properties
 				});
 		}).catch(value => {
+
+			// on error or reject
 			console.log(value);
+			$this.status.message = "Please enable location services in your browser.";
 		});
 	}
 

@@ -34,7 +34,7 @@ class App extends React.Component {
 			return (
 				<div className="notification">
 					<div className="notification-content">
-						Please Enable Location Services in Your Browser.
+						{ this.store.status.message }
 					</div>
 				</div>
 			)
